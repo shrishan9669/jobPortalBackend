@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import pkg from "@prisma/client";
 import "dotenv/config";
-export declare const prisma: PrismaClient<import("@prisma/client").Prisma.PrismaClientOptions, never, import("@prisma/client/runtime/client").DefaultArgs>;
+export declare const prisma: typeof pkg.PrismaClient;
 //# sourceMappingURL=client.d.ts.map
