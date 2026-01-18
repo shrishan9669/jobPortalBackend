@@ -1,0 +1,23 @@
+import { verifyJwt } from "../utils/jwt.js";
+import { prisma } from '../Prisma/client.js';
+export const requireAuth = async (req, res, next) => {
+    try {
+        const authHeader = req.headers['authorization'];
+        const token = authHeader && authHeader.split(' ')[1]; //Removes bearer
+        if (!token)
+            return res.status(401).json({ error: "Access denied , no token provided" });
+        const payload = verifyJwt(token);
+        if (!payload?.id)
+            return res.status(500).json({ error: "No id found on token" });
+        const user = await prisma.user.findUnique({ where: { id: payload.id } });
+        if (!user)
+            return res.json({ error: "No user found with Id" });
+        req.user = user;
+        next();
+    }
+    catch (err) {
+        console.log(err);
+        return res.json({ error: "Catched error" });
+    }
+};
+//# sourceMappingURL=auth.js.map

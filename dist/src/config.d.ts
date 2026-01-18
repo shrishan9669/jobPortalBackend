@@ -1,0 +1,4 @@
+export declare const DATABASE_URL = "postgresql://neondb_owner:npg_rBT0l7AMoVme@ep-cold-tree-a1bwfuag-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require";
+import { v2 as cloudinary } from "cloudinary";
+export default cloudinary;
+//# sourceMappingURL=config.d.ts.map
